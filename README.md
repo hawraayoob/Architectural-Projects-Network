@@ -9,28 +9,30 @@ MVC (Model-View-Controller) is a software design pattern that separates an appli
 •	Model: Manages data, business logic, and rules
 •	View: Displays data and handles user interface
 •	Controller: Processes user input and coordinates between Model and View
-Our MVC Implementation
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│     ROUTES      │    │   CONTROLLERS   │    │     MODELS      │
-│                 │    │                 │    │                 │
-│ • /projects     │───▶│ • dataController│───▶│ • Project       │
-│ • /clients      │    │ • viewController│    │ • Client        │
-│ • /portfolios   │    │ • apiController │    │ • Portfolio     │
-│ • /users        │    │                 │    │ • User          │
-│ • /api/*        │    │                 │    │ • Comment       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │
-                                ▼
-                       ┌─────────────────┐
-                       │      VIEWS      │
-                       │                 │
-                       │ • JSX Templates │
-                       │ • JSON Responses│
-                       │ • Image Gallery │
-                       │ • Project Views │
-                       └─────────────────┘
+
+MVC Implementation
+<img width="900" height="698" alt="Picture2" src="https://github.com/user-attachments/assets/6e4360b5-82dc-4e64-964d-0708b642fde5" />
+
 File Structure
-![text](C:\Users\salma\Downloads\Home page (1).png)
+<img width="2229" height="1444" alt="Home page (1)" src="https://github.com/user-attachments/assets/3263c218-bac1-42e8-8c86-df752e17379d" />
+
+🚀 Production Deployment
+Docker Deployment
+# Build Docker image
+docker build -t architectural-portfolio .
+
+# Run with Docker Compose
+docker-compose up -d
+
+# Scale services
+docker-compose up -d --scale app=3
+Environment Setup
+
+
+
+
+
+
 
 
 
