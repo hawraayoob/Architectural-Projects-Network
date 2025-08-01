@@ -1,4 +1,4 @@
-# Architectural-Design-Portfolio-Management-
+# Architectural-Projects-Network
 
 Overview
 This project showcases a robust portfolio management system created with Express.js and MongoDB using the Model-View-Controller (MVC) architecture. It is designed for architectural firms, designers, and individual architects to manage their design portfolios, projects, and client interactions. The system includes JWT authentication, supporting both query parameters for web views and headers for API calls.
