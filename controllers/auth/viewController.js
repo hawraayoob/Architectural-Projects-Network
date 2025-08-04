@@ -1,14 +1,17 @@
-exports.createUser = async (req, res, next) => {
-  try {
-    const user = new User(req.body);
-    await user.save();
-    const token = await user.generateAuthToken();
-    res.locals.data = { token };
-    req.user = user;
-    next();  
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+const viewController = {
+  signUp(req, res, next){
+    res.render('auth/SignUp')
+  },
+  signIn(req, res, next){
+    res.render('auth/SignIn')
+  },
+  apiAuth(req, res, next){
+    res.json({user: req.user, token: res.locals.data.token})
+  },
+  redirectToLogin(req, res, next){
+    res.redirect('/users/login')
   }
-};
 
+}
 
+module.exports = viewController

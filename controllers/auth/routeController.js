@@ -1,24 +1,33 @@
 const express = require('express');
 const router = express.Router();
+
 const viewController = require('./viewController.js');
 const dataController = require('./dataController.js');
 
+// ===== View Routes =====
 
-router.get('/', (req, res) => {
-  res.send('User index route works!')
-})
+// Show signup form
+router.get('/', viewController.signUp);             // GET /users
+router.get('/signup', viewController.signUp);       // GET /users/signup (alias)
 
-// create user
-router.post('/signup', dataController.createUser, (req, res) => {
-//redirect
-  if (viewController.redirectHome && typeof viewController.redirectHome === 'function') {
-    return viewController.redirectHome(req, res);
-  }
-  // send response
-  res.status(201).json(res.locals.data || { message: 'User created' });
-});
+// Show login form
+router.get('/login', viewController.signIn);        // GET /users/login
+router.get('/signin', viewController.signIn);       // GET /users/signin (alias)
+
+// ===== Data Routes =====
+
+// Create new user
+router.post('/', dataController.createUser, viewController.redirectToLogin); // POST /users
+// You can optionally add this alias too:
+router.post('/signup', dataController.createUser, viewController.redirectToLogin); // POST /users/signup
+
+// Login user
+router.post('/login', dataController.loginUser);
+
+// Update user by ID
+router.put('/:id', dataController.updateUser);
+
+// Delete user by ID (auth protected)
+router.delete('/:id', dataController.auth, dataController.deleteUser);
 
 module.exports = router;
-
-
-
