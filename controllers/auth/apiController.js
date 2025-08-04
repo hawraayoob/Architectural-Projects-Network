@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 
+
 // Check token
 exports.auth = async (req, res, next) => {
   try {

@@ -4,9 +4,8 @@ const Layout = require('../layouts/Layout')
 function SignUp (props) {
     return(
         <Layout>
-            <h1>📝 Sign Up</h1>
+            <h1> Sign Up</h1>
             
-            <h2 className="text-center mb-3">Join The Greatest Of All Time!</h2>
             
             <form action="/users" method="POST">
                 <div className="form-group">
@@ -44,13 +43,14 @@ function SignUp (props) {
                 
                 <div className="d-flex gap-2">
                     <button type="submit" className="btn btn-primary">
-                        📝 Create Account
+                         Create Account
                     </button>
                 </div>
             </form>
             
             <div className="text-center mt-3">
                 <p>Already have an account? <a href="/users/SignIn">Sign in here</a></p>
+                
             </div>
         </Layout>
     )
