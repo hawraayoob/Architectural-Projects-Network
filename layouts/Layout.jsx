@@ -1,0 +1,38 @@
+const React = require('react');
+
+function Layout(props) {
+// title of page based on opened project 
+    const title = props.title || 'Architectural Portfolio App';
+
+  return (
+    <html lang="en">
+      <head>
+        <title>{title}</title>
+        <link rel="stylesheet" href="/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      </head>
+      
+      <body>
+        <header>
+          <nav>
+            <a href={`/projects?token=${props.token || ''}`}>Projects</a> |{' '}
+            <a href={`/clients?token=${props.token || ''}`}>Clients</a> |{' '}
+            <a href={`/comments?token=${props.token || ''}`}>Comments</a> |{' '}
+            <a href={`/profile?token=${props.token || ''}`}>Profile</a>
+          </nav>
+        </header>
+
+        <main className="container">
+          {props.children}
+        </main>
+
+        <footer>
+          <p> Architectural Portfolio 2025 </p>
+        </footer>
+      </body>
+    </html>
+  );
+}
+
+module.exports = Layout;
