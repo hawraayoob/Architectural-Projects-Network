@@ -10,9 +10,6 @@ require('dotenv').config();
 // Check token
 exports.auth = async (req, res, next) => {
   try {
-    const authHeader = req.header('Authorization');
-    if (!authHeader) throw new Error('Missing token');
-    
     const token = authHeader.replace('Bearer ', '');
     const data = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(data._id);

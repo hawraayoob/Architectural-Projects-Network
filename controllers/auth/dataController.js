@@ -42,13 +42,15 @@ exports.createUser = async (req, res, next) => {
 };
 
 exports.loginUser = async (req, res, next) => {
+  console.log('Login attempt with body:', req.body);
   try {
     const user = await User.findOne({ email: req.body.email });
+    console.log('Found user:', user);
     if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
       return res.status(400).json({ message: 'Invalid login credentials' });
     }
     const token = await user.generateAuthToken();
-    res.locals.data = res.locals.data || {};
+    // res.locals.data = res.locals.data || {};
     res.locals.data.user = user;
     res.locals.data.token = token;
     req.user = user;

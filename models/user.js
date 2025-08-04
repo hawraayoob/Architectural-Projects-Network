@@ -13,11 +13,11 @@ const userSchema = new mongoose.Schema({
 })
 
 //  disspear password
-userSchema.methods.toJSON = function () {
-  const user = this.toObject()
-  delete user.password
-  return user
-}
+// userSchema.methods.toJSON = function () {
+//   const user = this.toObject()
+//   delete user.password
+//   return user
+// }
 
 //  password
 userSchema.pre('save', async function (next) {

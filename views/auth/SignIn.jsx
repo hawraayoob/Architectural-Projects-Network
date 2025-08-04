@@ -32,10 +32,7 @@ function SignIn (props) {
                 </div>
                 
                 <div className="d-flex gap-2">
-                    <button type="submit" className="btn btn-primary">
-                         Sign In
-                    </button>
-
+                    <input type="submit" className="btn btn-primary" value="Sign In"/>
                 </div>
             </form>
             

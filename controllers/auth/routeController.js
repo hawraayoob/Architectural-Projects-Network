@@ -3,6 +3,7 @@ const router = express.Router();
 
 const viewController = require('./viewController.js');
 const dataController = require('./dataController.js');
+const projectViewController = require('../projects/viewController.js');
 
 // ===== View Routes =====
 
@@ -22,7 +23,7 @@ router.post('/', dataController.createUser, viewController.redirectToLogin); // 
 router.post('/signup', dataController.createUser, viewController.redirectToLogin); // POST /users/signup
 
 // Login user
-router.post('/login', dataController.loginUser);
+router.post('/login', dataController.loginUser, projectViewController.redirectHome);
 
 // Update user by ID
 router.put('/:id', dataController.updateUser);

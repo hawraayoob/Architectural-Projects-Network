@@ -5,7 +5,7 @@ function Index(props) {
   const projects = props.projects;
 
   return (
-    <Layout>
+    <Layout user={props.user} token={props.token}>
       <h1> All Projects</h1>
 
       <div className="d-flex justify-between align-center mb-3">
