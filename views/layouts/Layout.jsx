@@ -15,6 +15,8 @@ function Layout(props) {
       
       <body>
         <header>
+         <p2> ArchFolio </p2>
+
           <nav>
             <a href={`/projects?token=${props.token || ''}`}>Projects</a> |{' '}
             <a href={`/clients?token=${props.token || ''}`}>Clients</a> |{' '}
