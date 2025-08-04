@@ -22,7 +22,7 @@ function EditComment(props) {
         </div>
 
         <div className="d-flex gap-2">
-          <button type="submit" className="btn btn-primary">💾 Update</button>
+          <button type="submit" className="btn btn-primary"> Update</button>
           <a href={`/projects/${project._id}?token=${token}`} className="btn btn-secondary">← Back</a>
         </div>
       </form>

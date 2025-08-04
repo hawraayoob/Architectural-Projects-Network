@@ -38,5 +38,3 @@ app.use('/comments', commentRoutes)
 app.use('/api', apiRoutes) 
 
 module.exports = app
-
-
