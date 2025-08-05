@@ -14,7 +14,7 @@ exports.index = async (req, res, next) => {
 exports.getAllProjects = async (req, res, next) => {
   try {
     const projects = await Project.find({});
-    res.locals.data = { projects };
+    res.locals.data.projects = projects; // adds to existing locals.data
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -29,7 +29,8 @@ exports.createProject = async (req, res, next) => {
     }
     const project = new Project(req.body);
     await project.save();
-    res.locals.data = { project };
+    res.locals.data.projects = { project };
+
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -42,7 +43,7 @@ exports.getProjectById = async (req, res, next) => {
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
-    res.locals.data = { project };
+    res.locals.data.projects = { project };
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -58,7 +59,7 @@ exports.updateProject = async (req, res, next) => {
     }
     updates.forEach(update => project[update] = req.body[update]);
     await project.save();
-    res.locals.data = { project };
+    res.locals.data.projects = { project };
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -72,9 +73,10 @@ exports.deleteProject = async (req, res, next) => {
       return res.status(404).json({ message: 'Project not found' });
     }
     await project.deleteOne();
-    res.locals.data = { message: 'Project deleted successfully' };
+    res.locals.data.projects = { message: 'Project deleted successfully' };
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
+
