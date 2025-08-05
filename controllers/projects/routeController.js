@@ -4,7 +4,26 @@ const viewController = require('./viewController.js');
 const dataController = require('./dataController.js');
 const authDataController = require('../auth/dataController.js');
 
-// Index 
+// 🔼 Add multer for image upload
+const multer = require('multer');
+const path = require('path');
+
+// ✅ Configure storage for uploaded images
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Save in /uploads folder
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)); // unique filename
+  }
+});
+
+const upload = multer({ storage });
+
+
+// ---------------- ROUTES ----------------
+
+// Index
 router.get(
   '/',
   authDataController.auth,
@@ -19,15 +38,16 @@ router.get(
   viewController.newView
 );
 
-// Create 
+// ✅ Create (with image upload)
 router.post(
   '/',
   authDataController.auth,
+  upload.single('image'), // <-- This line handles file upload
   dataController.createProject,
   viewController.redirectHome
 );
 
-// Show 
+// Show
 router.get(
   '/:id',
   authDataController.auth,
@@ -35,7 +55,7 @@ router.get(
   viewController.show
 );
 
-// Edit 
+// Edit
 router.get(
   '/:id/edit',
   authDataController.auth,
@@ -43,7 +63,7 @@ router.get(
   viewController.edit
 );
 
-// Update 
+// Update
 router.put(
   '/:id',
   authDataController.auth,

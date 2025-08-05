@@ -1,6 +1,6 @@
 const Project = require('../../models/project');
 
-// Add the missing index function that your routes are looking for
+// INDEX - Return all projects
 exports.index = async (req, res, next) => {
   try {
     const projects = await Project.find({});
@@ -11,32 +11,43 @@ exports.index = async (req, res, next) => {
   }
 };
 
+// GET all projects (API layer)
 exports.getAllProjects = async (req, res, next) => {
   try {
     const projects = await Project.find({});
-    res.locals.data.projects = projects; // adds to existing locals.data
+    res.locals.data.projects = projects;
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
+// ✅ CREATE project with image upload
 exports.createProject = async (req, res, next) => {
   try {
     const { title, description } = req.body;
+
     if (!title || !description) {
       return res.status(400).json({ message: 'Title and description are required' });
     }
-    const project = new Project(req.body);
+
+    const image = req.file ? req.file.filename : null;
+
+    const project = new Project({
+      title,
+      description,
+      image
+    });
+
     await project.save();
     res.locals.data.projects = { project };
-
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
+// GET one project by ID
 exports.getProjectById = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id);
@@ -50,6 +61,7 @@ exports.getProjectById = async (req, res, next) => {
   }
 };
 
+// UPDATE project by ID
 exports.updateProject = async (req, res, next) => {
   try {
     const updates = Object.keys(req.body);
@@ -57,7 +69,11 @@ exports.updateProject = async (req, res, next) => {
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
-    updates.forEach(update => project[update] = req.body[update]);
+
+    updates.forEach(update => {
+      project[update] = req.body[update];
+    });
+
     await project.save();
     res.locals.data.projects = { project };
     next();
@@ -66,6 +82,7 @@ exports.updateProject = async (req, res, next) => {
   }
 };
 
+// DELETE project by ID
 exports.deleteProject = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id);
@@ -79,4 +96,3 @@ exports.deleteProject = async (req, res, next) => {
     res.status(400).json({ message: error.message });
   }
 };
-
