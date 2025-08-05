@@ -13,8 +13,17 @@ const viewController = {
   },
 
   edit(req, res, next) {
-    // Render the edit form view for a comment
-    res.render('comments/Edit', res.locals.data || {});
+    // Add debug logging
+    console.log('Edit view - res.locals.data:', res.locals.data);
+    console.log('Edit view - comment data:', res.locals.data?.comment);
+    
+    // Ensure we have the token
+    if (!res.locals.data) {
+      res.locals.data = {};
+    }
+    
+    // Render the edit form view for a comment - note the 'e' at the end to match your file name
+    res.render('comments/Edite', res.locals.data);
   },
 
   newView(req, res, next) {

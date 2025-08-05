@@ -67,6 +67,7 @@ router.get(
 router.put(
   '/:id',
   authDataController.auth,
+  upload.single('image'), 
   dataController.updateProject,
   viewController.redirectShow
 );

@@ -43,10 +43,14 @@ exports.getCommentById = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id).populate('project').populate('author');
     if (!comment) return res.status(404).json({ message: 'Comment not found' });
+    
+    console.log('Found comment for edit:', comment);
+    
     res.locals.data = res.locals.data || {};
     res.locals.data.comment = comment;
     next();
   } catch (error) {
+    console.log('Error getting comment:', error.message);
     res.status(400).json({ message: error.message });
   }
 };
@@ -79,25 +83,31 @@ exports.createComment = async (req, res, next) => {
 
 exports.updateComment = async (req, res, next) => {
   try {
-    const comment = await Comment.findById(req.params.id).populate('project');
-    if (!comment) return res.status(404).json({ message: 'Comment not found' });
+    console.log('Update comment - req.params.id:', req.params.id);
+    console.log('Update comment - req.body:', req.body);
     
-    // Fix field name inconsistency
-    if (req.body.text) {
-      req.body.content = req.body.text;
+    const comment = await Comment.findById(req.params.id).populate('project');
+    if (!comment) {
+      console.log('Comment not found');
+      return res.status(404).json({ message: 'Comment not found' });
     }
     
-    // Update comment content
+    console.log('Found comment to update:', comment);
+    
+    // Update the content field
     if (req.body.content) {
       comment.content = req.body.content;
+      console.log('Updated content to:', req.body.content);
     }
     
     await comment.save();
+    console.log('Comment saved successfully');
     
     res.locals.data = res.locals.data || {};
     res.locals.data.comment = comment;
     next();
   } catch (error) {
+    console.log('Error updating comment:', error.message);
     res.status(400).json({ message: error.message });
   }
 };

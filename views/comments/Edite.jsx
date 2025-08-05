@@ -1,26 +1,34 @@
 const React = require('react');
 const Layout = require('../layouts/Layout');
 
-function EditComment(props) {
-  const comment = props.comment;
+function EditProject(props) {
+  const { _id, title, description } = props.project;
   const token = props.token;
-  const projectId = comment.project._id || comment.project;
 
   return (
-    <Layout token={token}>
-      <h1>Edit Comment</h1>
-      <p>On project: <strong>{comment.project.title || 'Project'}</strong></p>
+    <Layout token={props.token}>
+      <h1>Edit Project: {title}</h1>
 
-      <form action={`/comments/${comment._id}?_method=PUT&token=${token}`} method="POST">
-        <input type="hidden" name="project" value={projectId} />
-        
+      <form action={`/projects/${_id}?_method=PUT&token=${token}`} method="POST">
         <div className="form-group">
-          <label htmlFor="content">Comment:</label>
+          <label htmlFor="title">Project Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            defaultValue={title}
+            placeholder="Enter title..."
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="description">Description:</label>
           <textarea
-            id="content"
-            name="content"
-            defaultValue={comment.content}
-            placeholder="Update your comment..."
+            id="description"
+            name="description"
+            defaultValue={description}
+            placeholder="Describe the project..."
             required
             style={{
               width: '100%',
@@ -36,12 +44,12 @@ function EditComment(props) {
         </div>
 
         <div className="d-flex gap-2">
-          <button type="submit" className="btn btn-primary">Update Comment</button>
-          <a href={`/projects/${projectId}?token=${token}`} className="btn btn-secondary">← Back to Project</a>
+          <button type="submit" className="btn btn-primary">Update</button>
+          <a href={`/projects/${_id}?token=${token}`} className="btn btn-secondary">← Cancel</a>
         </div>
       </form>
     </Layout>
   );
 }
 
-module.exports = EditComment;
+module.exports = EditProject;

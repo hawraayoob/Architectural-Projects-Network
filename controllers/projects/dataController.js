@@ -70,18 +70,26 @@ exports.getProjectById = async (req, res, next) => {
   }
 };
 
+
+
 // UPDATE project by ID
 exports.updateProject = async (req, res, next) => {
   try {
-    const updates = Object.keys(req.body);
     const project = await Project.findById(req.params.id);
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
 
+    // Update fields
+    const updates = Object.keys(req.body);
     updates.forEach(update => {
       project[update] = req.body[update];
     });
+
+    // to edite image exchange image
+    if (req.file) {
+      project.image = req.file.filename;
+    }
 
     await project.save();
     res.locals.data.projects = { project };
@@ -90,6 +98,9 @@ exports.updateProject = async (req, res, next) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
+
 
 // DELETE project by ID
 exports.deleteProject = async (req, res, next) => {
