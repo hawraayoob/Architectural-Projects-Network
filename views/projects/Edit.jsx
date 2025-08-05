@@ -6,7 +6,7 @@ function EditProject(props) {
   const token = props.token;
 
   return (
-    <Layout>
+    <Layout token={props.token}>
       <h1> Edit Project: {title}</h1>
 
       <form action={`/projects/${_id}?_method=PUT&token=${token}`} method="POST">

@@ -3,7 +3,7 @@ const Layout = require('../layouts/Layout');
 
 function New(props) {
   return (
-    <Layout>
+    <Layout token={props.token}>
       <script
         //scripy for uploading the photo
           dangerouslySetInnerHTML={{
@@ -44,13 +44,17 @@ function New(props) {
         {/* New Image Upload  */}
         <div className="form-group">
           <label htmlFor="image">Project Image:</label>
-          <input
+          {/* <input
             type="file"
             id="image"
             name="image"
             accept="image/*"
             required
-          />
+          /> */}
+          <input type="text" 
+          name='image'
+          id='image'
+          required/>
         </div>
 
         <div className="d-flex gap-2">

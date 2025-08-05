@@ -25,16 +25,12 @@ exports.getAllProjects = async (req, res, next) => {
 //  CREATE project with image upload
 exports.createProject = async (req, res, next) => {
   try {
-    const { title, description } = req.body;
-    console.log('req.file:', req.file);
-console.log('req.body:', req.body);
-
-
+    const { title, description, image } = req.body;
     if (!title || !description) {
       return res.status(400).json({ message: 'Title and description are required' });
     }
 
-    const image = req.file ? req.file.filename : null;
+    // const image = req.file ? req.file.filename : null;
 
     const project = new Project({
       title,

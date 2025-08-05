@@ -5,7 +5,7 @@ function Show(props) {
   const project = props.project;
 
   return (
-    <Layout>
+    <Layout token={props.token}>
       <h1> {project.title}</h1>
 
       <div className="project-card">
@@ -13,15 +13,15 @@ function Show(props) {
         <p><strong>Architect:</strong> {project.architect?.name}</p>
 
 
-{project.image ? (
+{/* {project.image ? ( */}
   <img
     src={`/uploads/${project.image}`}
     alt="Project Image"
     style={{ maxWidth: '100%', height: 'auto' }}
   />
-) : (
+{/* ) : (
   <p>No image uploaded for this project.</p>
-)}
+)} */}
 
         
 
@@ -32,7 +32,7 @@ function Show(props) {
 
         <div className="mt-3">
           <form action={`/projects/${project._id}?_method=DELETE&token=${props.token}`} method="POST">
-            <button type="submit" className="btn btn-danger"> Delete Project</button>
+            <button type="submit" className="btn btn-danger"> Delete </button>
           </form>
         </div>
       </div>
