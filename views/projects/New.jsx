@@ -6,7 +6,8 @@ function New(props) {
     <Layout>
       <h1> Add New Project</h1>
 
-      <form action={`/projects?token=${props.token}`} method="POST">
+      {/* Set enctype for file upload */}
+      <form action={`/projects?token=${props.token}`} method="POST" encType="multipart/form-data">
         <div className="form-group">
           <label htmlFor="title">Project Title:</label>
           <input
@@ -26,6 +27,18 @@ function New(props) {
             placeholder="Describe the project..."
             required
           ></textarea>
+        </div>
+
+        {/* New Image Upload Section */}
+        <div className="form-group">
+          <label htmlFor="image">Project Image:</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+          />
         </div>
 
         <div className="d-flex gap-2">

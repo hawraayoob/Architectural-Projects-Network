@@ -12,7 +12,14 @@ db.on('error', (error) => {
     console.error(error.message);
 });
 
+
+//upload projects
+app.use('/uploads', express.static('uploads'));
+
+
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
