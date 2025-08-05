@@ -59,6 +59,10 @@ const viewController = {
       projectId = req.params.projectId;
     }
     
+    // Debug log
+    console.log('Redirecting to project:', projectId);
+    console.log('Token:', res.locals.data?.token);
+    
     if (projectId) {
       if (res.locals.data && res.locals.data.token) {
         res.redirect(`${PROJECT_PATH}/${projectId}?token=${res.locals.data.token}`);

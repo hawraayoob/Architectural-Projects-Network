@@ -20,8 +20,13 @@ exports.auth = async (req, res, next) => {
     req.user = user;
     res.locals.data = res.locals.data || {};
     res.locals.data.token = token;
+    
+    // Debug log
+    console.log('Auth successful for user:', user.name, 'Token:', token);
+    
     next();
   } catch (error) {
+    console.log('Auth error:', error.message);
     res.status(401).json({ message: 'Not authorized' });
   }
 };
@@ -50,7 +55,7 @@ exports.loginUser = async (req, res, next) => {
       return res.status(400).json({ message: 'Invalid login credentials' });
     }
     const token = await user.generateAuthToken();
-    // res.locals.data = res.locals.data || {};
+    res.locals.data = res.locals.data || {};
     res.locals.data.user = user;
     res.locals.data.token = token;
     req.user = user;
@@ -92,5 +97,3 @@ exports.deleteUser = async (req, res, next) => {
     res.status(400).json({ message: error.message });
   }
 };
-
-

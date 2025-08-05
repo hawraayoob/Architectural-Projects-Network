@@ -79,21 +79,19 @@ exports.createComment = async (req, res, next) => {
 
 exports.updateComment = async (req, res, next) => {
   try {
-    const comment = await Comment.findById(req.params.id);
+    const comment = await Comment.findById(req.params.id).populate('project');
     if (!comment) return res.status(404).json({ message: 'Comment not found' });
-    
-    // Check if user owns the comment
-    if (comment.author.toString() !== req.user._id.toString()) {
-      return res.status(403).json({ message: 'Not authorized to edit this comment' });
-    }
     
     // Fix field name inconsistency
     if (req.body.text) {
       req.body.content = req.body.text;
     }
     
-    const updates = Object.keys(req.body);
-    updates.forEach(update => comment[update] = req.body[update]);
+    // Update comment content
+    if (req.body.content) {
+      comment.content = req.body.content;
+    }
+    
     await comment.save();
     
     res.locals.data = res.locals.data || {};
@@ -106,16 +104,14 @@ exports.updateComment = async (req, res, next) => {
 
 exports.deleteComment = async (req, res, next) => {
   try {
-    const comment = await Comment.findById(req.params.id);
+    const comment = await Comment.findById(req.params.id).populate('project');
     if (!comment) return res.status(404).json({ message: 'Comment not found' });
     
-    // Check if user owns the comment
-    if (comment.author.toString() !== req.user._id.toString()) {
-      return res.status(403).json({ message: 'Not authorized to delete this comment' });
-    }
-    
     await comment.deleteOne();
-    res.locals.data = { message: 'Comment deleted successfully' };
+    
+    res.locals.data = res.locals.data || {};
+    res.locals.data.comment = comment; // Keep comment data for redirect
+    res.locals.data.message = 'Comment deleted successfully';
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });

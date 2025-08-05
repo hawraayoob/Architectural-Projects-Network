@@ -75,17 +75,16 @@ function Show(props) {
                     action={`/comments/${comment._id}?_method=DELETE&token=${token}`} 
                     method="POST" 
                     style={{ display: 'inline' }}
-                    onSubmit={(e) => {
-                      if (!confirm('Are you sure you want to delete this comment?')) {
-                        e.preventDefault();
-                      }
-                    }}
                   >
-                    <input type="hidden" name="project" value={project._id} />
                     <button 
                       type="submit" 
                       className="btn btn-danger" 
                       style={{ fontSize: '0.875rem', padding: '0.25rem 0.75rem' }}
+                      onClick={(e) => {
+                        if (!confirm('Are you sure you want to delete this comment?')) {
+                          e.preventDefault();
+                        }
+                      }}
                     >
                       Delete
                     </button>
