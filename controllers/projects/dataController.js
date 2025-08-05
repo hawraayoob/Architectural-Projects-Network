@@ -58,7 +58,7 @@ exports.getProjectById = async (req, res, next) => {
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
-    res.locals.data.projects = { project };
+    res.locals.data.project = project;
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });

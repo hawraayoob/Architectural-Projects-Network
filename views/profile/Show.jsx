@@ -19,7 +19,7 @@ function Show(props) {
 
         <div className="mt-3">
           <form action={`/users/${user._id}?_method=DELETE&token=${props.token}`} method="POST">
-            <button type="submit" className="btn btn-danger">🗑️ Delete User</button>
+            <button type="submit" className="btn btn-danger"> Delete User</button>
           </form>
         </div>
       </div>
