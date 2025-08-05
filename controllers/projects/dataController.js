@@ -26,6 +26,9 @@ exports.getAllProjects = async (req, res, next) => {
 exports.createProject = async (req, res, next) => {
   try {
     const { title, description } = req.body;
+    console.log('req.file:', req.file);
+console.log('req.body:', req.body);
+
 
     if (!title || !description) {
       return res.status(400).json({ message: 'Title and description are required' });

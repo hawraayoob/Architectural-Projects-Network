@@ -1,11 +1,7 @@
-const express = require('express');
 require('dotenv').config();
 const app = require('./app');
 const db = require('./models/db');
 const PORT = process.env.PORT || 3000;
-
-
-
 
 
 // Connect to the database
@@ -16,12 +12,6 @@ db.once('open', () => {
 db.on('error', (error) => {
     console.error(error.message);
 });
-
-
-
-
-
-
 
 // Start the server
 app.listen(PORT, () => {

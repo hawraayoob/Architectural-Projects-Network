@@ -7,7 +7,7 @@ const viewController = {
     res.render('projects/Index', res.locals.data || {});
   },
   show(req, res, next) {
-res.render('projects/Show', { projects: res.locals.data.projects });
+    res.render('projects/Show', { project: res.locals.data.projects });
   },
   edit(req, res, next) {
     res.render('projects/Edit', res.locals.data || {});
