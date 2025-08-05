@@ -1,4 +1,5 @@
 const Project = require('../../models/project');
+const Comment = require('../../models/comment');
 
 // INDEX - Return all projects
 exports.index = async (req, res, next) => {
@@ -47,14 +48,22 @@ exports.createProject = async (req, res, next) => {
   }
 };
 
-// GET one project by ID
+// GET one project by ID with comments
 exports.getProjectById = async (req, res, next) => {
   try {
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findById(req.params.id).populate('architect', 'name');
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
+    
+    // Get comments for this project
+    const comments = await Comment.find({ project: req.params.id })
+      .populate('author', 'name')
+      .sort({ createdAt: -1 });
+    
+    res.locals.data = res.locals.data || {};
     res.locals.data.project = project;
+    res.locals.data.comments = comments;
     next();
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -89,6 +98,10 @@ exports.deleteProject = async (req, res, next) => {
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
+    
+    // Delete all comments associated with this project
+    await Comment.deleteMany({ project: req.params.id });
+    
     await project.deleteOne();
     res.locals.data.projects = { message: 'Project deleted successfully' };
     next();

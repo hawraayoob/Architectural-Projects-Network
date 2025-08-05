@@ -15,9 +15,9 @@ router.get(
   viewController.index
 );
 
-// Show form to create new comment
+// Show form to create new comment for a specific project
 router.get(
-  '/new',
+  '/new/:projectId',
   authDataController.auth,
   viewController.newView
 );
@@ -27,7 +27,7 @@ router.post(
   '/',
   authDataController.auth,
   dataController.createComment,
-  viewController.redirectHome
+  viewController.redirectToProject
 );
 
 // Show a single comment by id
@@ -51,7 +51,7 @@ router.put(
   '/:id',
   authDataController.auth,
   dataController.updateComment,
-  viewController.redirectShow
+  viewController.redirectToProject
 );
 
 // Delete a comment
@@ -59,9 +59,7 @@ router.delete(
   '/:id',
   authDataController.auth,
   dataController.deleteComment,
-  viewController.redirectHome
+  viewController.redirectToProject
 );
-
-
 
 module.exports = router;
