@@ -31,4 +31,7 @@ router.put('/:id', dataController.updateUser);
 // Delete user by ID (auth protected)
 router.delete('/:id', dataController.auth, dataController.deleteUser);
 
+
+
+
 module.exports = router;

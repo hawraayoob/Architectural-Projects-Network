@@ -18,7 +18,7 @@ describe('Auth Tests', () => {
 
   test('Register new user', async () => {
     const res = await request(app)
-      .post('/users')
+      .post('/users') 
       .send({ name: 'Test User', email: 'test@example.com', password: 'password123' });
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('token');

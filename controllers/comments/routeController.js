@@ -62,4 +62,6 @@ router.delete(
   viewController.redirectHome
 );
 
+
+
 module.exports = router;

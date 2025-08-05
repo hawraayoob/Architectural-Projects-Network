@@ -38,7 +38,7 @@ router.get(
   viewController.newView
 );
 
-// ✅ Create (with image upload)
+//  Create (with image upload)
 router.post(
   '/',
   authDataController.auth,
