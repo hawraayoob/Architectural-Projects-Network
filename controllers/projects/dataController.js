@@ -22,7 +22,7 @@ exports.getAllProjects = async (req, res, next) => {
   }
 };
 
-// ✅ CREATE project with image upload
+//  CREATE project with image upload
 exports.createProject = async (req, res, next) => {
   try {
     const { title, description } = req.body;
@@ -36,7 +36,8 @@ exports.createProject = async (req, res, next) => {
     const project = new Project({
       title,
       description,
-      image
+      image,
+      architect: req.user._id
     });
 
     await project.save();

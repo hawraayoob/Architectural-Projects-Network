@@ -1,3 +1,5 @@
+const Project = require("../../models/project");
+
 const RESOURCE_PATH = '/projects';
 
 const viewController = {
@@ -5,7 +7,7 @@ const viewController = {
     res.render('projects/Index', res.locals.data || {});
   },
   show(req, res, next) {
-    res.render('projects/Show', res.locals.data || {});
+res.render('projects/Show', { projects: res.locals.data.projects });
   },
   edit(req, res, next) {
     res.render('projects/Edit', res.locals.data || {});

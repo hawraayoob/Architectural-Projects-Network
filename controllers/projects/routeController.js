@@ -4,11 +4,11 @@ const viewController = require('./viewController.js');
 const dataController = require('./dataController.js');
 const authDataController = require('../auth/dataController.js');
 
-// 🔼 Add multer for image upload
+// Add multer for image upload
 const multer = require('multer');
 const path = require('path');
 
-// ✅ Configure storage for uploaded images
+//  Configure storage for uploaded images
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/'); // Save in /uploads folder

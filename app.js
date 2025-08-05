@@ -37,4 +37,9 @@ app.use('/projects', projectRoutes)
 app.use('/comments', commentRoutes)
 app.use('/api', apiRoutes) 
 
+
+
+app.use('/uploads', express.static('uploads'));
+
+
 module.exports = app

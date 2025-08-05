@@ -12,6 +12,7 @@ function Show(props) {
         <p><strong>Description:</strong> {project.description}</p>
         <p><strong>Architect:</strong> {project.architect?.name}</p>
 
+
         <div className="d-flex gap-2 mt-3">
           <a href={`/projects?token=${props.token}`} className="btn btn-secondary">← Back to Projects</a>
           <a href={`/projects/${project._id}/edit?token=${props.token}`} className="btn btn-primary"> Edit Project</a>

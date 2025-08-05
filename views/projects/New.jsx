@@ -4,6 +4,18 @@ const Layout = require('../layouts/Layout');
 function New(props) {
   return (
     <Layout>
+      <script
+        //scripy for uploading the photo
+          dangerouslySetInnerHTML={{
+            __html: `
+              function previewImage(event) {
+                const preview = document.getElementById('preview');
+                preview.src = URL.createObjectURL(event.target.files[0]);
+                preview.style.display = 'block';
+              }
+            `,
+          }}
+        />
       <h1> Add New Project</h1>
 
       {/* Set enctype for file upload */}
@@ -29,7 +41,7 @@ function New(props) {
           ></textarea>
         </div>
 
-        {/* New Image Upload Section */}
+        {/* New Image Upload  */}
         <div className="form-group">
           <label htmlFor="image">Project Image:</label>
           <input
