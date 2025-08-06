@@ -5,26 +5,30 @@ const jwt = require('jsonwebtoken');
 exports.auth = async (req, res, next) => {
   try {
     let token;
-if (req.query.token) {
-  token = req.query.token;
-} else if (req.header('Authorization')) {
-  token = req.header('Authorization').replace('Bearer ', '');
-} else if (req.body.token) { //  Add this
-  token = req.body.token;
-} else {
-  return res.status(401).json({ message: 'No token provided' });
-}
+    if (req.query.token) {
+      token = req.query.token;
+    } else if (req.header('Authorization')) {
+      token = req.header('Authorization').replace('Bearer ', '');
+    } else if (req.body.token) {
+      token = req.body.token;
+    } else {
+      return res.status(401).json({ message: 'No token provided' });
+    }
 
     const data = jwt.verify(token, 'secret');
     const user = await User.findOne({ _id: data._id });
     if (!user) return res.status(401).json({ message: 'User not found' });
 
+    // ✅ Load user's projects
+    const Project = require('../../models/project');
+    const projects = await Project.find({ createdBy: user._id });
+
     req.user = user;
     res.locals.data = res.locals.data || {};
     res.locals.data.token = token;
-    
-    
-    // Debug log
+    res.locals.data.user = user;
+    res.locals.data.projects = projects; // ✅ Add this
+
     console.log('Auth successful for user:', user.name, 'Token:', token);
     
     next();

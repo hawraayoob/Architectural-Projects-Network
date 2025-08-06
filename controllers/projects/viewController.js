@@ -33,7 +33,23 @@ const viewController = {
     } else {
       res.redirect(`${RESOURCE_PATH}/${req.params.id}`);
     }
-  }
+  },
+    async showProfile(req, res, next) {
+    try {
+      const user = req.user;
+      const token = res.locals.data.token;
+      const projects = await Project.find({}); // or filter by user ID
+
+      res.render('auth/Profile', {
+        user,
+        token,
+        projects
+      });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
 };
+
 
 module.exports = viewController;

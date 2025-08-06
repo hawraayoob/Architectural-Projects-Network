@@ -80,4 +80,11 @@ router.delete(
   viewController.redirectHome
 );
 
+router.get(
+  '/profile',
+  authDataController.auth,
+  viewController.showProfile
+);
+
+
 module.exports = router;

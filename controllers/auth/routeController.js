@@ -1,37 +1,40 @@
 const express = require('express');
 const router = express.Router();
 
-const viewController = require('./viewController.js');
 const dataController = require('./dataController.js');
-const projectViewController = require('../projects/viewController.js');
+const viewController = require('./viewController.js');
 
-// ===== View Routes =====
+// Show Sign Up form
+router.get('/signup', viewController.signUp);
 
-// Show signup form
-router.get('/', viewController.signUp);             // GET /users
-router.get('/signup', viewController.signUp);       // GET /users/signup (alias)
+// Show Login form
+router.get('/login', viewController.signIn);
 
-// Show login form
-router.get('/login', viewController.signIn);        // GET /users/login
-router.get('/signin', viewController.signIn);       // GET /users/signin (alias)
+// Create new user → redirect to profile
+router.post(
+  '/',
+  dataController.createUser,
+  viewController.redirectToProfile
+);
 
-// ===== Data Routes =====
+router.post(
+  '/signup',
+  dataController.createUser,
+  viewController.redirectToProfile
+);
 
-// Create new user
-router.post('/', dataController.createUser, viewController.redirectToLogin); // POST /users
-// You can optionally add this alias too:
-router.post('/signup', dataController.createUser, viewController.redirectToLogin); // POST /users/signup
+// Login user → redirect to profile
+router.post(
+  '/login',
+  dataController.loginUser,
+  viewController.redirectToProfile
+);
 
-// Login user
-router.post('/login', dataController.loginUser, projectViewController.redirectHome);
-
-// Update user by ID
-router.put('/:id', dataController.updateUser);
-
-// Delete user by ID (auth protected)
-router.delete('/:id', dataController.auth, dataController.deleteUser);
-
-
-
+// Show profile
+router.get(
+  '/profile',
+  dataController.auth,
+  viewController.profile
+);
 
 module.exports = router;
