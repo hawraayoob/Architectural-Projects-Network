@@ -22,6 +22,8 @@ function Show(props) {
           />
         )}
 
+
+
         <div className="d-flex gap-2 mt-3">
           <a href={`/projects?token=${token}`} className="btn btn-secondary">← Back to Projects</a>
           <a href={`/projects/${project._id}/edit?token=${token}`} className="btn btn-primary">Edit Project</a>

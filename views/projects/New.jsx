@@ -57,6 +57,8 @@ function New(props) {
           required/>
         </div>
 
+
+
         <div className="d-flex gap-2">
           <button type="submit" className="btn btn-primary">Create Project</button>
           <a href={`/projects?token=${props.token}`} className="btn btn-secondary">← Back to Projects</a>
