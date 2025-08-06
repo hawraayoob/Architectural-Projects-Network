@@ -21,7 +21,6 @@ function Layout(props) {
 
             <a href={`/SignIn?token=${props.token || ''}`}>SignIn</a> |{' '}
             <a href={`/projects?token=${props.token || ''}`}>Projects</a> |{' '}
-            <a href={`/clients?token=${props.token || ''}`}>Clients</a> |{' '}
             <a href={`/comments?token=${props.token || ''}`}>Comments</a> |{' '}
             <a href={`/profile?token=${props.token || ''}`}>Profile</a>
           </nav>

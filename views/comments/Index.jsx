@@ -5,7 +5,7 @@ function Index(props) {
   const comments = props.comments;
 
   return (
-    <Layout>
+    <Layout token={props.token}>
       <h1> Comments</h1>
 
       {comments.length === 0 ? (

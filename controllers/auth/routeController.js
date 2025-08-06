@@ -37,4 +37,9 @@ router.get(
   viewController.profile
 );
 
+// to get signin pg
+router.get('/SignIn', viewController.signIn)
+
+
+
 module.exports = router;

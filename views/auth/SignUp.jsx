@@ -7,7 +7,7 @@ function SignUp (props) {
             <h1> Sign Up</h1>
             
             
-            <form action="/users" method="POST">
+            <form action="/signup" method="POST">
                 <div className="form-group">
                     <label htmlFor="name">Full Name:</label>
                     <input 

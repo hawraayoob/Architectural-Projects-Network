@@ -8,7 +8,7 @@ function SignIn (props) {
             
             <h2 className="text-center mb-3">Welcome Back!</h2>
             
-            <form action="/users/login" method="POST">
+            <form action="/login" method="POST">
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
                     <input 
@@ -37,7 +37,7 @@ function SignIn (props) {
             </form>
             
             <div className="text-center mt-3">
-                <p>Don't have an account? <a href="/users/signup">Sign up here</a></p>
+                <p>Don't have an account? <a href="/signup">Sign up here</a></p>
             </div>
         </Layout>
     )
