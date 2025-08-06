@@ -4,14 +4,14 @@ const viewController = require('./viewController.js');
 const dataController = require('./dataController.js');
 const authDataController = require('../auth/dataController.js');
 
-// Add multer for image upload
+// Add multer for img upload
 const multer = require('multer');
 const path = require('path');
 
-//  Configure storage for uploaded images
+//  Configure storage for uploaded imgs
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Save in /uploads folder
+    cb(null, 'uploads/'); // Save and uploads folder
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname)); // unique filename
@@ -21,9 +21,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 
-// ---------------- ROUTES ----------------
+//ROUTES
 
-// Index
+/// Index
 router.get(
   '/',
   authDataController.auth,
@@ -31,23 +31,23 @@ router.get(
   viewController.index
 );
 
-// New   
+/// New   
 router.get(
   '/new',
   authDataController.auth,
   viewController.newView
 );
 
-//  Create (with image upload)
+///  Create with img
 router.post(
   '/',
   authDataController.auth,
-  upload.single('image'), // <-- This line handles file upload
+  upload.single('image'), 
   dataController.createProject,
   viewController.redirectHome
 );
 
-// Show
+/// Show
 router.get(
   '/:id',
   authDataController.auth,
@@ -55,7 +55,7 @@ router.get(
   viewController.show
 );
 
-// Edit
+/// Edit
 router.get(
   '/:id/edit',
   authDataController.auth,
@@ -63,7 +63,7 @@ router.get(
   viewController.edit
 );
 
-// Update
+/// Update
 router.put(
   '/:id',
   authDataController.auth,
@@ -72,7 +72,7 @@ router.put(
   viewController.redirectShow
 );
 
-// Delete
+/// Delete
 router.delete(
   '/:id',
   authDataController.auth,

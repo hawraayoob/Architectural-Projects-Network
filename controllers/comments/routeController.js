@@ -30,7 +30,7 @@ router.post(
   viewController.redirectToProject
 );
 
-// Show a single comment by id
+// Show by id
 router.get(
   '/:id',
   authDataController.auth,
@@ -38,7 +38,7 @@ router.get(
   viewController.show
 );
 
-// Show edit form for comment
+// Show edit comment
 router.get(
   '/:id/edit',
   authDataController.auth,
@@ -46,7 +46,7 @@ router.get(
   viewController.edit
 );
 
-// Update a comment
+// Update  comment
 router.put(
   '/:id',
   authDataController.auth,
@@ -54,7 +54,7 @@ router.put(
   viewController.redirectToProject
 );
 
-// Delete a comment
+// Delete  comment
 router.delete(
   '/:id',
   authDataController.auth,

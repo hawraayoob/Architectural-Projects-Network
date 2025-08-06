@@ -3,6 +3,7 @@ const Layout = require('../layouts/Layout');
 
 function Index(props) {
   const projects = props.projects;
+  console.log('Projects:', projects);
 
   return (
     <Layout user={props.user} token={props.token}>
@@ -30,7 +31,7 @@ function Index(props) {
               <p>{project.description.slice(0, 100)}...</p>
               <div className="d-flex gap-2">
                 <a href={`/projects/${project._id}?token=${props.token}`} className="btn btn-secondary"> View</a>
-                <a href={`/projects/${project._id}/edit?token=${props.token}`} className="btn btn-primary"> Edit</a>
+                {props.user._id.toString() === project.architect.toString()? <a href={`/projects/${project._id}/edit?token=${props.token}`} className="btn btn-primary"> Edit</a> : null}
               </div>
             </div>
           ))}

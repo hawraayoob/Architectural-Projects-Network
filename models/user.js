@@ -12,12 +12,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 })
 
-//  disspear password
-// userSchema.methods.toJSON = function () {
-//   const user = this.toObject()
-//   delete user.password
-//   return user
-// }
 
 //  password
 userSchema.pre('save', async function (next) {
@@ -27,7 +21,7 @@ userSchema.pre('save', async function (next) {
   next()
 })
 
-//   create token authentication
+//   create token auth
 userSchema.methods.generateAuthToken = async function () {
   const token = jwt.sign({ _id: this._id, role: this.role }, 'secret')
   return token

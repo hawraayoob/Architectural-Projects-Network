@@ -4,7 +4,7 @@ const RESOURCE_PATH = '/projects';
 
 const viewController = {
   index(req, res, next) {
-    res.render('projects/Index', res.locals.data || {});
+    res.render('projects/Index', {...res.locals.data, user: req.user });
   },
   show(req, res, next) {
     res.render('projects/Show', res.locals.data );
@@ -38,7 +38,7 @@ const viewController = {
     try {
       const user = req.user;
       const token = res.locals.data.token;
-      const projects = await Project.find({}); // or filter by user ID
+      const projects = await Project.find({}); // filter by user ID
 
       res.render('auth/Profile', {
         user,
@@ -53,3 +53,5 @@ const viewController = {
 
 
 module.exports = viewController;
+
+

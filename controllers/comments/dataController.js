@@ -23,7 +23,7 @@ exports.getAllComments = async (req, res, next) => {
   }
 };
 
-// NEW: Get comments for a specific project
+// comment on specific proj
 exports.getCommentsByProjectId = async (req, res, next) => {
   try {
     const projectId = req.params.projectId || req.body.project;
@@ -57,7 +57,7 @@ exports.getCommentById = async (req, res, next) => {
 
 exports.createComment = async (req, res, next) => {
   try {
-    // Fix field name inconsistency - use 'content' to match model
+    // Fix field name -matchmodel
     if (!req.body.content && req.body.text) {
       req.body.content = req.body.text;
     }
@@ -94,7 +94,7 @@ exports.updateComment = async (req, res, next) => {
     
     console.log('Found comment to update:', comment);
     
-    // Update the content field
+    // Update the content 
     if (req.body.content) {
       comment.content = req.body.content;
       console.log('Updated content to:', req.body.content);

@@ -1,7 +1,7 @@
 const Project = require('../../models/project');
 const Comment = require('../../models/comment');
 
-// INDEX - Return all projects
+// INDEX - retrn all proj
 exports.index = async (req, res, next) => {
   try {
     const projects = await Project.find({});
@@ -12,7 +12,7 @@ exports.index = async (req, res, next) => {
   }
 };
 
-// GET all projects (API layer)
+// GET all projects
 exports.getAllProjects = async (req, res, next) => {
   try {
     const projects = await Project.find({});
@@ -31,7 +31,7 @@ exports.createProject = async (req, res, next) => {
       return res.status(400).json({ message: 'Title and description are required' });
     }
 
-    // const image = req.file ? req.file.filename : null;
+    
 
     const project = new Project({
       title,
@@ -48,7 +48,7 @@ exports.createProject = async (req, res, next) => {
   }
 };
 
-// GET one project by ID with comments
+// GET single project by ID with itscomments
 exports.getProjectById = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id).populate('architect', 'name');
@@ -56,7 +56,7 @@ exports.getProjectById = async (req, res, next) => {
       return res.status(404).json({ message: 'Project not found' });
     }
     
-    // Get comments for this project
+    // Get comments on specific project
     const comments = await Comment.find({ project: req.params.id })
       .populate('author', 'name')
       .sort({ createdAt: -1 });
@@ -72,7 +72,7 @@ exports.getProjectById = async (req, res, next) => {
 
 
 
-// UPDATE project by ID
+// UPDATE project by id
 exports.updateProject = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id);
@@ -80,13 +80,13 @@ exports.updateProject = async (req, res, next) => {
       return res.status(404).json({ message: 'Project not found' });
     }
 
-    // Update fields
+    // Update project
     const updates = Object.keys(req.body);
     updates.forEach(update => {
       project[update] = req.body[update];
     });
 
-    // to edite image exchange image
+    // to edite image OR exchange image
     if (req.file) {
       project.image = req.file.filename;
     }
@@ -102,7 +102,7 @@ exports.updateProject = async (req, res, next) => {
 
 
 
-// DELETE project by ID
+// DELETE proj by ID
 exports.deleteProject = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id);
@@ -110,7 +110,7 @@ exports.deleteProject = async (req, res, next) => {
       return res.status(404).json({ message: 'Project not found' });
     }
     
-    // Delete all comments associated with this project
+    // Delete all comments 
     await Comment.deleteMany({ project: req.params.id });
     
     await project.deleteOne();

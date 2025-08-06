@@ -5,7 +5,7 @@ const projectSchema = new mongoose.Schema({
   description: { type: String },
   image: { type: String },
   
-  // 👇 This links the project to the user (architect)
+  // this link to user proj
   architect: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

@@ -1,4 +1,4 @@
-const Project = require('../../models/project'); // ⬅️ Make sure to require this
+const Project = require('../../models/project'); 
 
 const viewController = {
   signUp(req, res, next) {
@@ -17,13 +17,13 @@ const viewController = {
     res.redirect('/users/login');
   },
 
-  // ✅ Updated profile method
+  // update user profile 
   profile: async (req, res, next) => {
     try {
       const user = req.user;
       const token = res.locals.data.token;
 
-      // 🔍 Find projects created by this user
+      // fnd proj create by the user
       const projects = await Project.find({ architect: user._id });
 
       res.render('auth/Show', {

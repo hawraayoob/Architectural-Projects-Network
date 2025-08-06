@@ -19,7 +19,7 @@ exports.auth = async (req, res, next) => {
     const user = await User.findOne({ _id: data._id });
     if (!user) return res.status(401).json({ message: 'User not found' });
 
-    // ✅ Load user's projects
+    // Load projects by user
     const Project = require('../../models/project');
     const projects = await Project.find({ createdBy: user._id });
 
@@ -27,7 +27,7 @@ exports.auth = async (req, res, next) => {
     res.locals.data = res.locals.data || {};
     res.locals.data.token = token;
     res.locals.data.user = user;
-    res.locals.data.projects = projects; // ✅ Add this
+    res.locals.data.projects = projects; 
 
     console.log('Auth successful for user:', user.name, 'Token:', token);
     
