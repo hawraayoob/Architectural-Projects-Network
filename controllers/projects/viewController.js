@@ -9,9 +9,14 @@ const viewController = {
   show(req, res, next) {
     res.render('projects/Show', res.locals.data );
   },
-  edit(req, res, next) {
-    res.render('projects/Edit', res.locals.data || {});
-  },
+
+  edit(req, res, next) { 
+  res.render('projects/Edit', {
+    ...res.locals.data,
+    token: res.locals.data.token || req.query.token || ''  //to add new img
+  });
+},
+
   newView(req, res, next) {
     res.render('projects/New', res.locals.data || {});
   },

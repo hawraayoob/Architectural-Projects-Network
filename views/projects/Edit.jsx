@@ -1,14 +1,14 @@
 const React = require('react');
 const Layout = require('../layouts/Layout');
 
-function Edit({ project }) {
+function Edit({ project, token }) {
   return (
     <Layout title="Edit Project">
       <div className="container">
         <h1>Edit Project</h1>
 
         <form
-          action={`/projects/${project._id}?_method=PUT`}
+          action={`/projects/${project._id}?_method=PUT&token=${token}`}
           method="POST"
           encType="multipart/form-data" //  allow image upload
         >
@@ -44,17 +44,25 @@ function Edit({ project }) {
                 alt="Project"
                 style={{ maxWidth: '100%', height: 'auto', marginBottom: '1rem' }}
               />
+              <div className="form-group">
+                <label htmlFor="image">Project Image:</label>
+                {/* <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                  required
+                /> */}
+                <input type="text" 
+                name='image'
+                id='image'
+                defaultValue={project.image}
+
+                required/>
+              </div>
             </div>
           )}
 
-          <div className="form-group">
-            <label htmlFor="image">Upload New Image</label>
-            <input
-              type="file"
-              name="image"
-              id="image"
-            />
-          </div>
 
           <button type="submit" className="btn btn-primary">Update Project</button>
         </form>

@@ -5,7 +5,7 @@ function New(props) {
   return (
     <Layout token={props.token}>
       <script
-        //scripy for uploading the photo
+        //uploading img
           dangerouslySetInnerHTML={{
             __html: `
               function previewImage(event) {

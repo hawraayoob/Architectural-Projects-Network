@@ -5,13 +5,15 @@ const jwt = require('jsonwebtoken');
 exports.auth = async (req, res, next) => {
   try {
     let token;
-    if (req.query.token) {
-      token = req.query.token;
-    } else if (req.header('Authorization')) {
-      token = req.header('Authorization').replace('Bearer ', '');
-    } else {
-      return res.status(401).json({ message: 'No token provided' });
-    }
+if (req.query.token) {
+  token = req.query.token;
+} else if (req.header('Authorization')) {
+  token = req.header('Authorization').replace('Bearer ', '');
+} else if (req.body.token) { //  Add this
+  token = req.body.token;
+} else {
+  return res.status(401).json({ message: 'No token provided' });
+}
 
     const data = jwt.verify(token, 'secret');
     const user = await User.findOne({ _id: data._id });
@@ -20,6 +22,7 @@ exports.auth = async (req, res, next) => {
     req.user = user;
     res.locals.data = res.locals.data || {};
     res.locals.data.token = token;
+    
     
     // Debug log
     console.log('Auth successful for user:', user.name, 'Token:', token);
