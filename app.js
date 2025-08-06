@@ -8,29 +8,29 @@ const userRoutes = require('./controllers/auth/routeController')
 const projectRoutes = require('./controllers/projects/routeController')
 const commentRoutes = require('./controllers/comments/routeController')
 
-// to test
+// test
 const apiRoutes = require('./routes/apiRoutes')
 
 const app = express()
 
-// view engine
+// view 
 app.set('view engine', 'jsx')
 app.engine('jsx', jsxEngine())
 
-// Middleware
+// middle
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(morgan('dev'))
 
-// view middleware
+// view 
 app.use((req, res, next) => {
   res.locals.data = {}
   next()
 })
 
-// ✅ updated
+// updated
 app.use('/', userRoutes)
 app.use('/projects', projectRoutes)
 app.use('/comments', commentRoutes)
