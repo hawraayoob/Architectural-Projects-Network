@@ -16,7 +16,7 @@ function Show(props) {
         </p>
 
         <div className="d-flex gap-2 mt-3">
-          <a href={`/comments?token=${props.token}`} className="btn btn-secondary">← Back to Comments</a>
+          <a href={`/comments?token=${props.token}`} className="btn btn-secondary">← Back </a>
           <a href={`/comments/${comment._id}/edit?token=${props.token}`} className="btn btn-primary"> Edit Comment</a>
         </div>
 

@@ -22,7 +22,7 @@ function Profile(props) {
       </ul>
 
       <a href={`/projects?token=${token}`} className="btn btn-secondary mt-4">
-        Back to Projects
+        Back
       </a>
     </Layout>
   );

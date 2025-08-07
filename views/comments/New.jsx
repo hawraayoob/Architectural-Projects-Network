@@ -33,8 +33,8 @@ function New(props) {
         </div>
 
         <div className="d-flex gap-2">
-          <button type="submit" className="btn btn-primary">Post Comment</button>
-          <a href={`/projects/${projectId}?token=${token}`} className="btn btn-secondary">← Back to Project</a>
+          <button type="submit" className="btn btn-primary">Send Comment</button>
+          <a href={`/projects/${projectId}?token=${token}`} className="btn btn-secondary">← Back </a>
         </div>
       </form>
     </Layout>

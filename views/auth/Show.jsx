@@ -8,9 +8,9 @@ function Show(props) {
 
   return (
     <Layout token={token}>
-      <h1>Architect Profile: {user.name}</h1>
+      <h1> Profile: {user.name}</h1>
 
-      <h2 className="mt-4">My Uploaded Projects</h2>
+      <h2 className="mt-4">Your Projects</h2>
       {projects.length > 0 ? (
         <ul>
           {projects.map((project) => (
@@ -26,7 +26,7 @@ function Show(props) {
       )}
 
       <a href={`/projects?token=${token}`} className="btn btn-secondary mt-4">
-        Back to All Projects
+        Back
       </a>
     </Layout>
   );
