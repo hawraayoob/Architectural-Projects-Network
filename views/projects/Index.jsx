@@ -10,7 +10,6 @@ function Index(props) {
       <h1> All Projects</h1>
 
       <div className="d-flex justify-between align-center mb-3">
-        <h2>Your Projects</h2>
         <a href={`/projects/new?token=${props.token}`} className="btn btn-primary">
            Add New Project
         </a>

@@ -15,7 +15,7 @@ function Layout(props) {
       
       <body>
         <header>
-         <p2> ArchFolio </p2>
+         <h1> ArchFolio </h1>
 
           <nav>
 
