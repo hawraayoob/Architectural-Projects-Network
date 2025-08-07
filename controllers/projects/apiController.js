@@ -1,9 +1,9 @@
 const Project = require('../../models/project');
 
-// Add the missing index function that routes are looking for
+
 exports.index = (req, res) => {
   try {
-    // Use data from previous middleware (projectDataController.index)
+    // Use data from middlewre
     const { projects } = res.locals.data;
     res.json(projects);
   } catch (error) {

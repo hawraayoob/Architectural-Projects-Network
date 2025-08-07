@@ -10,7 +10,7 @@ router.get('/signup', viewController.signUp);
 // Show Login form
 router.get('/login', viewController.signIn);
 
-// Create new user → redirect to profile
+// Create new user to go to profile
 router.post(
   '/',
   dataController.createUser,
@@ -23,7 +23,7 @@ router.post(
   viewController.redirectToProfile
 );
 
-// Login user → redirect to profile
+// Login user 
 router.post(
   '/login',
   dataController.loginUser,

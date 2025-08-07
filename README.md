@@ -1,6 +1,6 @@
 # Architectural Projects Network 📐👷🏻‍♀️
 
-📚 Documentation Overview
+📚 Project Overview
 This project is a collaborative platform for architects to download and share their projects with the community. Built with Express.js and MongoDB following the Model-View-Controller (MVC) architecture pattern, the website enables architects to showcase their work, download projects from other professionals, and engage through an interactive comment system. The application includes both web views and API endpoints, with JWT authentication supporting both query parameters (for web views) and headers (for API calls).
 
 ## 📖 Complete Documentation Suite
@@ -310,7 +310,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## 🙏 Acknowledgments
 - Express.js and MongoDB teams for excellent documentation
-- The architectural community for inspiration and feedback
-- Open-source contributors who made this project possible
-- Beta testers and early adopters for valuable insights
+- The instructors for feedback
 

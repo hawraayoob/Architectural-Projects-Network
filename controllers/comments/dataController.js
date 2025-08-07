@@ -1,6 +1,5 @@
 const Comment = require('../../models/comment');
 
-// Add the missing index function that routes are looking for
 exports.index = async (req, res, next) => {
   try {
     const comments = await Comment.find({}).populate('project').populate('author');
@@ -57,7 +56,7 @@ exports.getCommentById = async (req, res, next) => {
 
 exports.createComment = async (req, res, next) => {
   try {
-    // Fix field name -matchmodel
+
     if (!req.body.content && req.body.text) {
       req.body.content = req.body.text;
     }
@@ -120,7 +119,7 @@ exports.deleteComment = async (req, res, next) => {
     await comment.deleteOne();
     
     res.locals.data = res.locals.data || {};
-    res.locals.data.comment = comment; // Keep comment data for redirect
+    res.locals.data.comment = comment; //for direct
     res.locals.data.message = 'Comment deleted successfully';
     next();
   } catch (error) {

@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-// Import controllers - TO MATCH STRUCTURE
+// to match st
 const userApiController = require('../controllers/auth/apiController');
 const projectDataController = require('../controllers/projects/dataController');
 const projectApiController = require('../controllers/projects/apiController');
 const commentDataController = require('../controllers/comments/dataController');
 const commentApiController = require('../controllers/comments/apiController');
 
-// to ensure valid functions
+// ensure valid functions 
 console.log('userApiController.auth:', typeof userApiController.auth);
 console.log('projectDataController.index:', typeof projectDataController.index);
 console.log('projectApiController.index:', typeof projectApiController.index);

@@ -15,7 +15,7 @@ router.get(
   viewController.index
 );
 
-// Show form to create new comment for a specific project
+//to show create proj form
 router.get(
   '/new/:projectId',
   authDataController.auth,
@@ -38,7 +38,7 @@ router.get(
   viewController.show
 );
 
-// Show edit comment
+//  edit comment
 router.get(
   '/:id/edit',
   authDataController.auth,

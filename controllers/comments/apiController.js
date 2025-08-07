@@ -1,7 +1,7 @@
 const Comment = require('../../models/comment')
 const Project = require('../../models/project')
 
-// Add comment to a project (wether architect or client)
+// Add comment to a project
 exports.addComment = async (req, res) => {
   try {
     const { text } = req.body

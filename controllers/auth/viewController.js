@@ -23,7 +23,7 @@ const viewController = {
       const user = req.user;
       const token = res.locals.data.token;
 
-      // fnd proj create by the user
+      // fnd proj that create by the user
       const projects = await Project.find({ architect: user._id });
 
       res.render('auth/Show', {

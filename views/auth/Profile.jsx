@@ -8,7 +8,7 @@ function Profile(props) {
 
   return (
     <Layout token={token}>
-      <h1>Architect: {user.name}</h1> {/* Display the architect's name */}
+      <h1>Architect: {user.name}</h1> 
 
       <h2 className="mt-4">All Projects:</h2>
       <ul>

@@ -1,7 +1,7 @@
 const React = require('react');
 
 function Layout(props) {
-// title of page based on opened project 
+// title of page due to opn proj
     const title = props.title || 'Architectural Portfolio App';
 
   return (

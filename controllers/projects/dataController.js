@@ -102,7 +102,7 @@ exports.updateProject = async (req, res, next) => {
 
 
 
-// DELETE proj by ID
+// DELETE proj by user
 exports.deleteProject = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id);

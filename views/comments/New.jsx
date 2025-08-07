@@ -18,7 +18,6 @@ function New(props) {
             id="content"
             name="content"
             placeholder="Write your comment..."
-            ///in edit, replace placeholder with value={}
             required
             style={{
               width: '100%',

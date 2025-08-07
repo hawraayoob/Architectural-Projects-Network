@@ -19,7 +19,7 @@ exports.auth = async (req, res, next) => {
     const user = await User.findOne({ _id: data._id });
     if (!user) return res.status(401).json({ message: 'User not found' });
 
-    // Load projects by user
+    // Load projects by id
     const Project = require('../../models/project');
     const projects = await Project.find({ createdBy: user._id });
 
